@@ -8,6 +8,7 @@ const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
 const expressLayouts = require("express-ejs-layouts");
 const cookieParser = require("cookie-parser");
+const MongoStore = require("connect-mongo")(session);
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -23,6 +24,15 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
+    store: new MongoStore(
+      {
+        mongooseConnection: db,
+        autoRemove: "disabled",
+      },
+      function (err) {
+        console.log(err || "connect-mongodb ok");
+      }
+    ),
   })
 );
 app.use(passport.initialize());

@@ -13,11 +13,19 @@
     ></textarea>
     <input type="submit" value="Post" />
   </form>
-</section>
-<%}%>
 
-<div id="posts">
-  <ul>
-    <% for( post of posts) {%> <%- include('_post') %> <%}%>
-  </ul>
-</div>
+  <%}%>
+
+  <div id="posts">
+    <ul>
+      <% for( post of posts) {%> <%- include('_post') %> <%}%>
+    </ul>
+  </div>
+</section>
+
+<section id="user-friends">
+  <h4>Friends</h4>
+  <% for(u of all_users) {%>
+  <a href="/users/profile/<%= u._id%>"><%= u.name%></a>
+  <%}%>
+</section>

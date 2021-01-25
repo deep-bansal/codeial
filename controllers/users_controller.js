@@ -48,3 +48,7 @@ module.exports.create = function (req, res) {
 module.exports.createSession = function (req, res) {
   return res.redirect("/users/profile");
 };
+module.exports.signout = function (req, res) {
+  res.clearCookie("codeial");
+  return res.redirect("/");
+};

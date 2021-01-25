@@ -46,10 +46,12 @@ module.exports.create = function (req, res) {
 };
 
 module.exports.createSession = function (req, res) {
+  req.flash("success", "Logged in Successfully");
   return res.redirect(`/users/profile/${req.user.id}`);
 };
 module.exports.signout = function (req, res) {
-  res.clearCookie("codeial");
+  req.flash("success", "Logged out Successfully");
+  req.logout();
   return res.redirect("/");
 };
 

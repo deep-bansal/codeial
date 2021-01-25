@@ -1,5 +1,5 @@
-const Comment = require("../models/comment");
-const Post = require("../models/posts");
+const Comment = require('../models/comment');
+const Post = require('../models/posts');
 
 module.exports.create = async function (req, res) {
   try {
@@ -14,14 +14,14 @@ module.exports.create = async function (req, res) {
       post.comments.push(comment);
       post.save();
     }
-    return res.redirect("back");
+    return res.redirect('back');
   } catch (err) {
     console.log(err);
   }
 };
 
 module.exports.destroy = async function (req, res) {
-  let comment = await Comment.findById(req.params.id).populate("post");
+  let comment = await Comment.findById(req.params.id);
 
   if (comment.user == req.user.id || req.user.id == comment.post.user) {
     let postId = comment.post;
@@ -29,8 +29,8 @@ module.exports.destroy = async function (req, res) {
     let post = await Post.findByIdAndUpdate(postId, {
       $pull: { comments: req.params.id },
     });
-    return res.redirect("back");
+    return res.redirect('back');
   } else {
-    return res.redirect("back");
+    return res.redirect('back');
   }
 };

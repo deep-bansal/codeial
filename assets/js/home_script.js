@@ -12,9 +12,25 @@
           console.log(data);
           let newPost = newPostDom(data.data.post);
           $('#posts>ul').prepend(newPost);
+          new Noty({
+            theme: 'relax',
+            text: 'Post Published',
+            type: 'success',
+            layout: 'topRight',
+            timeout: 1500,
+            progressBar: false,
+          }).show();
+          deletePost($(' .delete-post-btn', newPost));
         },
         error: function (err) {
-          console.log(error.responseText);
+          new Noty({
+            theme: 'relax',
+            text: error,
+            type: 'error',
+            layout: 'topRight',
+            timeout: 1500,
+            progressBar: false,
+          }).show();
         },
       });
     });
@@ -49,5 +65,44 @@
     `);
   };
 
+  let deletePost = function (deleteLink) {
+    $(deleteLink).click(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'get',
+        url: $(deleteLink).prop('href'),
+        success: function (data) {
+          $(`#post-${data.data.post_id}`).remove();
+          new Noty({
+            theme: 'relax',
+            text: 'Post Deleted',
+            type: 'success',
+            layout: 'topRight',
+            timeout: 1500,
+            progressBar: false,
+          }).show();
+        },
+        error: function (error) {
+          new Noty({
+            theme: 'relax',
+            text: error,
+            type: 'error',
+            layout: 'topRight',
+            timeout: 1500,
+            progressBar: false,
+          }).show();
+        },
+      });
+    });
+  };
+
+  let convertPostToAjax = function () {
+    $('#posts>ul>li').each(function () {
+      let self = $(this);
+      deletePost(' .delete-post-btn', self);
+    });
+  };
+
   createPost();
+  convertPostToAjax();
 }

@@ -1,20 +1,15 @@
 const Post = require("../models/posts");
 const Comment = require("../models/comment");
 module.exports.create = function (req, res) {
-  Post.create(
-    {
+  try {
+    let post = Post.create({
       content: req.body.content,
       user: req.user._id,
-    },
-    function (err, post) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      console.log(post);
-      return res.redirect("back");
-    }
-  );
+    });
+    return res.redirect("back");
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports.destroy = function (req, res) {

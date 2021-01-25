@@ -1,17 +1,21 @@
 const User = require("../models/user");
 
-module.exports.profile = function (req, res) {
-  User.findById(req.params.id, function (err, user) {
+module.exports.profile = async function (req, res) {
+  try {
+    let user = await User.findById(req.params.id);
+
     return res.render("user_profile", {
       title: "Profie Page",
       profile_user: user,
     });
-  });
+  } catch (err) {
+    console.log("error", err);
+  }
 };
 
 module.exports.signUp = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect("/users/profile");
+    return res.redirect(`/users/profile/${req.user.id}`);
   }
   return res.render("user_signup", {
     title: "Codeial | Sign Up",
@@ -20,7 +24,7 @@ module.exports.signUp = function (req, res) {
 
 module.exports.signIn = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect("/users/profile");
+    return res.redirect(`/users/profile/${req.user.id}`);
   }
   return res.render("user_signin", {
     title: "Codeial | Sign In",
@@ -32,16 +36,9 @@ module.exports.create = function (req, res) {
     return res.redirect("back");
   }
   User.findOne({ email: req.body.email }, function (err, user) {
-    if (err) {
-      console.log("error in finding the user in signing up ");
-      return;
-    }
+    console.log(user);
     if (!user) {
       User.create(req.body, function (err, user) {
-        if (err) {
-          console.log("error in creating the user while signing up ", err);
-          return;
-        }
         return res.redirect("/users/signin");
       });
     }
@@ -49,7 +46,7 @@ module.exports.create = function (req, res) {
 };
 
 module.exports.createSession = function (req, res) {
-  return res.redirect("/users/profile");
+  return res.redirect(`/users/profile/${req.user.id}`);
 };
 module.exports.signout = function (req, res) {
   res.clearCookie("codeial");

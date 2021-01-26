@@ -9,7 +9,6 @@
         url: '/posts/new-post',
         data: newPostForm.serialize(),
         success: function (data) {
-          console.log(data);
           let newPost = newPostDom(data.data.post);
           $('#posts>ul').prepend(newPost);
           new Noty({
@@ -97,10 +96,10 @@
   };
 
   let convertPostToAjax = function () {
-    $('#posts>ul>li').each(function () {
-      let self = $(this);
-      deletePost(' .delete-post-btn', self);
-    });
+    let deleteLinks = $('.delete-post-btn');
+    for (deleteLink of deleteLinks) {
+      deletePost(deleteLink);
+    }
   };
 
   createPost();

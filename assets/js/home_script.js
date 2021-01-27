@@ -20,6 +20,7 @@
             progressBar: false,
           }).show();
           deletePost($(' .delete-post-btn', newPost));
+          new ToggleLike($(' .toggle-like-btn', newPost));
         },
         error: function (err) {
           new Noty({
@@ -54,6 +55,11 @@
           <input type="hidden" name="post" value="${post._id}" />
           <input type="submit" value="Add Comment" />
         </form>
+        <small>
+        <a class = "toggle-like-btn" href="/likes/toggle/?id=${post._id}&type=Post">
+    0 Likes</a
+  >
+        </small>
     
         <div class="post-comments-list">
           <ul id="posts-comments-${post._id}">

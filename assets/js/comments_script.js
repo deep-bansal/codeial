@@ -13,6 +13,7 @@
           let newComment = newCommentDom(data.data.comment);
           $('#post-comments-list>ul').append(newComment);
           deleteComment($(' .delete-comment-btn', newComment));
+          new ToggleLike($(' .toggle-like-btn', newComment));
         },
 
         error: function (err) {
@@ -33,6 +34,11 @@
         <br />
         <small>${comment.user.name} </small>
       </p>
+      <small>
+        <a class = "toggle-like-btn" href="/likes/toggle/?id=${comment._id}&type=Comment">
+    0 Likes</a
+  >
+        </small>
     </li>
     `);
   };

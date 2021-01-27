@@ -31,3 +31,10 @@
 </section>
 <script src="/js/home_script.js"></script>
 <script src="/js/comments_script.js"></script>
+<script src="/js/toggle_likes.js"></script>
+<script>
+  $(' .toggle-like-btn').each(function () {
+    let self = this;
+    let toggleLike = new ToggleLike(self);
+  });
+</script>

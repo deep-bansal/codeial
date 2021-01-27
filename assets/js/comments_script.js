@@ -26,7 +26,7 @@
     return $(`<li id = "comment-${comment._id}">
       <p>
         <small>
-          <a class="delete-comment-btn" href="/comments/destroy/<%=comment._id%>">X</a>
+          <a class="delete-comment-btn" href="/comments/destroy/<%=comment.id%>">X</a>
         </small>
     
         ${comment.content}

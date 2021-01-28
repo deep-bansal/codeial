@@ -1,11 +1,14 @@
 <header>
-  <p>
-    <a href="/">Home</a>
-  </p>
-  <% if(locals.user) {%>
-  <p><a href="/users/profile/<%=locals.user.id%>">Profile</a></p>
-  <%}%>
-  <p><a href="/users/signin">Signin</a></p>
-  <p><a href="/users/signout">Signout</a></p>
-  <p><a href="/users/signup">Signup</a></p>
+  <h1>CODEIAL</h1>
+  <div id="tags">
+    <p>
+      <a href="/">Home</a>
+    </p>
+    <% if(locals.user) {%>
+    <p><a href="/users/profile/<%=locals.user.id%>">Profile</a></p>
+    <%}%>
+    <p><a href="/users/signin">Signin</a></p>
+    <p><a href="/users/signout">Signout</a></p>
+    <p><a href="/users/signup">Signup</a></p>
+  </div>
 </header>

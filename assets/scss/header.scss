@@ -1,0 +1,25 @@
+p {
+  display: inline;
+  margin-left: 5px;
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+}
+header {
+  background-color: rgb(91, 91, 238);
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  top: -8px;
+  left: -8px;
+  color: white;
+}
+h1 {
+  display: inline;
+}
+
+#tags {
+  float: right;
+}

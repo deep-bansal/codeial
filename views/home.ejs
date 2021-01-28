@@ -1,8 +1,7 @@
-<link rel="stylesheet" href="/css/home.css" />
-
-<% if(locals.user) {%>
+<link rel="stylesheet" href=""<%= assetPath('css/home.css')%>" />
+<h3>Posts</h3>
+<%if(locals.user) {%>
 <section id="feed-posts">
-  <h3>Posts</h3>
   <form action="/posts/new-post" method="Post" id="new-post-form">
     <textarea
       name="content"
@@ -28,9 +27,9 @@
   <p><a href="/users/profile/<%= u._id%>"><%= u.name%></a></p>
   <%}%>
 </section>
-<script src="/js/home_script.js"></script>
-<script src="/js/comments_script.js"></script>
-<script src="/js/toggle_likes.js"></script>
+<script src="<%= assetPath('js/home_script.js')%>"></script>
+<script src="<%= assetPath('js/comments_script.js')%>"></script>
+<script src="<%= assetPath('js/toggle_likes.js')%>"></script>
 <script>
   $(' .toggle-like-btn').each(function () {
     let self = this;

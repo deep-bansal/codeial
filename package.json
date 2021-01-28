@@ -35,6 +35,7 @@
     "gulp-rev": "^9.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-uglify-es": "^2.0.0",
+    "gulp-uglifycss": "^1.1.0",
     "jsonwebtoken": "^8.5.1",
     "kue": "^0.11.6",
     "mongo-store": "0.0.2",

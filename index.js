@@ -1,5 +1,8 @@
 const express = require('express');
+const Logger = require('morgan');
+const env = require('./config/environment');
 const app = express();
+require('./config/view_helpers')(app);
 const port = 8000;
 const path = require('path');
 const db = require('./config/mongoose');
@@ -10,12 +13,11 @@ const passportJWT = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth-strategy');
 const expressLayouts = require('express-ejs-layouts');
 const sassMiddleware = require('node-sass-middleware');
-const Logger = require('morgan');
+
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
-const env = require('./config/environment');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -69,6 +71,7 @@ app.use(cookieParser());
 //use express router
 app.use('/', require('./routes'));
 app.use(express.static(env.asset_path));
+console.log(env.asset_path);
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(Logger(env.morgan.mode, env.morgan.options));
 

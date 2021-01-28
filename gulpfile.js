@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const uglifycss = require('gulp-uglifycss');
 
 const cssnano = require('gulp-cssnano');
 const rev = require('gulp-rev');
@@ -16,10 +17,11 @@ gulp.task('css', function (done) {
     .src('./assets/sass/**/*.scss')
     .pipe(sass())
     .pipe(cssnano())
-    .pipe(gulp.dest('./assets.css'));
+    .pipe(gulp.dest('./assets/css'));
 
   gulp
     .src('./assets/**/*.css')
+    .pipe(uglifycss())
     .pipe(rev())
     .pipe(gulp.dest('./public/assets'))
     .pipe(

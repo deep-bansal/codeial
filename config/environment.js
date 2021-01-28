@@ -22,13 +22,12 @@ const development = {
     port: 587,
     secure: false,
     auth: {
-      user: 'bansaldeep4101@gmail.com',
+      user: '',
       pass: '',
     },
   },
-  google_client_id:
-    '304167876053-okpibdv5pafn0q6uivo2m4rq8dmt52ub.apps.googleusercontent.com',
-  google_client_secret: 'Tcyj-TEWf1UCsKKsTHjBd69I',
+  google_client_id: '',
+  google_client_secret: '',
   google_callbackURL: 'http://localhost:8000/users/auth/google/callback',
   jwt_secret: 'codeial',
   morgan: {
